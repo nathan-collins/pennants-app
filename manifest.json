@@ -1,0 +1,7 @@
+{
+  "name": "Sunshine Coast Golf",
+  "short_name": "Sunshine Coast Golf",
+  "description": "Sunshine Coast golf pennants application",
+  "start_url": "/",
+  "display": "standalone"
+}
