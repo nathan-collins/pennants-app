@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>pennants-season test</title>
+
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../../src/pennants-season/pennants-season.html">
+  </head>
+  <body>
+    <test-fixture id="pennants-season-fixture">
+      <template>
+        <pennants-season></pennants-season>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('pennants-season', function() {
+        var pennantsSeason;
+        setup(function() {
+          pennantsSeason = fixture('pennants-season-fixture');
+          pennantsSeason.seasons = [
+            {
+              name: "2017 Season",
+              value: "2017"
+            },
+            {
+              name: "2016 Season",
+              value: "2016"
+            }
+          ];
+        }),
+        test('instantiating the element works', function() {
+          assert.equal(pennantsSeason.is, 'pennants-season');
+        });
+        test('current year should be selected', function() {
+          var currentYear = new Date().getFullYear();
+          var selectedValue = pennantsSeason.querySelector('iron-pages');
+          expect(selectedValue).to.have.property('selected').and.equal(0);
+        });
+        test('2 tabs are displayed', function(done) {
+          flush(function() {
+            var tabs = pennantsSeason.querySelectorAll('paper-tab');
+            expect(tabs.length).to.equal(2);
+            var tab = tabs[0];
+            expect(tab.innerText.trim()).to.equal('2017 Season');
+            done();
+          });
+        });
+        test('when a tab is clocked the title changes', function(done) {
+          flush(function() {
+            var tabs = pennantsSeason.querySelectorAll('paper-tab');
+            var title = pennantsSeason.querySelector('iron-pages .iron-selected');
+            expect(title.innerText.trim()).to.equal('2017 Season');
+            var tab = tabs[1];
+            tab.click();
+            title = pennantsSeason.querySelector('iron-pages .iron-selected');
+            expect(title.innerText.trim()).to.equal('2016 Season');
+            done();
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

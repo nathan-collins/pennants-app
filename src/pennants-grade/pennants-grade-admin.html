@@ -1,0 +1,22 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+
+<dom-module is="pennants-grade-admin">
+  <template>
+    <style>
+
+    </style>
+    <form is="iron-form" id="gradeForm">
+      <div>
+        <paper-input name="grade_name" id="gradeName" label="Grade name" value="{{name}}" required auto-validate></paper-input>
+      </div>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button id="saveForm" on-tap="submitGradeForm">OK</paper-button>
+      </div>
+    </form>
+  </template>
+  <script src="pennants-grade-admin.js"></script>
+</dom-module>

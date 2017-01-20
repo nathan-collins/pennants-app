@@ -1,0 +1,29 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../pennants-team/pennants-team-admin.html">
+
+<dom-module is="pennants-grade-team-admin">
+  <template>
+    <firebase-query
+      app-name="pennants-app"
+      path="/teams"
+      order-by-child="name"
+      data="{{teamData}}">
+    </firebase-query>
+
+    <app-indexeddb-mirror
+      key="team"
+      data="{{teamData}}"
+      persisted-data="{{persistedData}}">
+    </app-indexeddb-mirror>
+
+    <paper-dropdown-menu>
+      <paper-listbox class="dropdown-content">
+        <template is="dom-repeat" items="{{persistedData}}" as="club" index-as="index">
+          <paper-item value="[[index]]">[[club.name]]</paper-item>
+        </template>
+      </paper-listbox>
+    </paper-dropdown-menu>
+  </template>
+  <script src="pennants-grade-team-admin.js"></script>
+</dom-module>

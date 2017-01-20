@@ -1,0 +1,20 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<dom-module is="pennants-team-admin">
+  <template>
+    <style>
+
+    </style>
+    <form is="iron-form" id="teamForm">
+      <paper-input name="team_name" id="teamName" label="Team name" value="{{name}}" required auto-validate></paper-input>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button id="saveForm" on-tap="submitTeamForm">OK</paper-button>
+      </div>
+    </form>
+  </template>
+  <script src="pennants-team-admin.js"></script>
+</dom-module>

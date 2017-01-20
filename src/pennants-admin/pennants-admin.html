@@ -1,0 +1,71 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/places-icons.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../pennants-season/pennants-season-admin.html">
+<link rel="import" href="../pennants-grade/pennants-grade-admin.html">
+<link rel="import" href="../pennants-team/pennants-team-admin.html">
+<link rel="import" href="../pennants-grade/pennants-grade-team-admin.html">
+
+<dom-module id="pennants-admin">
+  <template>
+    <style>
+      paper-dialog {
+        padding: 10px 20px;
+      }
+
+      iron-icon.seasonIcon {
+        --iron-icon: {
+          padding-top: 10px;
+          cursor: pointer;
+        }
+      }
+
+      iron-icon.gradeIcon {
+        --iron-icon: {
+          cursor: pointer;
+        }
+      }
+
+      iron-icon.teamIcon {
+        --iron-icon: {
+          cursor: pointer;
+        }
+      }
+
+      paper-toolbar iron-icon {
+        --iron-icon: {
+          cursor: pointer;
+        }
+      }
+    </style>
+      <slot>
+        <firebase-document id="document"></firebase-document>
+        <paper-icon-button icon="{{icon}}" on-tap="openDialog" page="{{page}}" class$="{{_computeIconClass(page)}} {{class}}"></paper-icon-button>
+        <paper-dialog id="dialog" with-backdrop>
+          <h2>Add {{pageTitle}}</h2>
+          <paper-dialog-scrollable>
+            <template is="dom-if" if="{{_getPage(page, 'season')}}">
+              <pennants-season-admin></pennants-season-admin>
+            </template>
+            <template is="dom-if" if="{{_getPage(page, 'grade')}}">
+              <pennants-grade-admin></pennants-grade-admin>
+            </template>
+            <template is="dom-if" if="{{_getPage(page, 'team')}}">
+              <pennants-team-admin></pennants-team-admin>
+            </template>
+            <template is="dom-if" if="{{_getPage(page, 'grade-team')}}">
+              <pennants-grade-team-admin></pennants-grade-team-admin>
+            </template>
+          </paper-dialog-scrollable>
+        </paper-dialog>
+      </slot>
+  </template>
+  <script src="pennants-admin.js"></script>
+</dom-module>

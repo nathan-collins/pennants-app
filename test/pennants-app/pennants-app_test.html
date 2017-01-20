@@ -4,25 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>sunshinecoast-golf-app test</title>
+    <title>pennants-app test</title>
 
     <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../../web-component-tester/browser.js"></script>
 
-    <link rel="import" href="../../src/sunshinecoast-golf-app/sunshinecoast-golf-app.html">
+    <link rel="import" href="../../src/pennants-app/pennants-app.html">
   </head>
   <body>
-    <test-fixture id="basic">
+    <test-fixture id="pennants-app-fixture">
       <template>
-        <sunshinecoast-golf-app></sunshinecoast-golf-app>
+        <pennants-app></pennants-app>
       </template>
     </test-fixture>
 
     <script>
-      suite('sunshinecoast-golf-app', function() {
+      suite('pennants-app', function() {
+        var pennantsApp;
+
+        setup(function() {
+          pennantsApp = fixture('pennants-app-fixture');
+        });
+
         test('instantiating the element works', function() {
-          var element = fixture('basic');
-          assert.equal(element.is, 'sunshinecoast-golf-app');
+          assert.equal(pennantsApp.is, 'pennants-app');
         });
       });
     </script>

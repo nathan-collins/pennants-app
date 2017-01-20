@@ -1,0 +1,15 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="pennants-team">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <template is="dom-repeat" items="{{_toArray(teams)}}" as="team">
+      <span>[[team.name]]</span>
+    </template>
+  </template>
+  <script src="pennants-team.js"></script>
+</dom-module>

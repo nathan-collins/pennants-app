@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>pennants-grade test</title>
+
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../../src/pennants-grade/pennants-grade.html">
+  </head>
+  <body>
+    <test-fixture id="pennants-grade-fixture">
+      <template>
+        <pennants-grade></pennants-grade>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('pennants-grade', function() {
+        var pennantsGrade;
+
+        setup(function() {
+          pennantsGrade = fixture('pennants-grade-fixture');
+
+          pennantsGrade.grades = [
+            {
+              name: "A Grade"
+            },
+            {
+              name: "B Grade"
+            },
+            {
+              name: "Masters"
+            }
+          ]
+        }),
+
+        test('instantiating the element works', function() {
+          assert.equal(pennantsGrade.is, 'pennants-grade');
+        });
+
+        test('3 grades exist', function() {
+
+        });
+      });
+    </script>
+  </body>
+</html>

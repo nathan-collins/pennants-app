@@ -1,0 +1,14 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="pennants-authentication">
+  <template>
+    <div class="error" hidden$="[[!error]]">[[error.code]]: [[error.message]]</div>
+    <div hidden$="[[user]]">
+      <button raised on-tap="signInWithGoogle">Sign In With google</button>
+    </div>
+    <div hidden$="[[!user]]">
+      <button raised>Add Season</button>
+    </div>
+  </template>
+  <script src="pennants-authentication.js"></script>
+</dom-module>

@@ -1,0 +1,41 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+<link rel="import" href="../pennants-authentication/pennants-authentication.html">
+<link rel="import" href="../pennants-season/pennants-season.html">
+
+
+<dom-module id="pennants-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <firebase-app
+      auth-domain="sunshinecoastgolf.firebaseapp.com"
+      database-url="https://sunshinecoastgolf.firebaseio.com"
+      api-key="AIzaSyDM3TX6SIlBO6qLuDHKAJa92yYyXY0M6zs">
+    </firebase-app>
+    
+    <firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError">
+    </firebase-auth>
+
+    <firebase-query
+      id="seasonQuery"
+      app-name="pennants-app"
+      path="/season"
+      data="{{seasons}}">
+    </firebase-query>
+
+    <app-indexeddb-mirror
+      key="seasons"
+      data="{{seasons}}"
+      persisted-data="{{seasonData}}">
+    </app-indexeddb-mirror>
+
+    <pennants-season seasons="{{seasonData}}"></pennants-season>
+  </template>
+
+  <script src="pennants-app.js"></script>
+</dom-module>

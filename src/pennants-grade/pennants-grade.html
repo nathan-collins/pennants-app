@@ -1,0 +1,83 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid.html">
+
+<!--
+`pennants-grade`
+Pennants grades display
+
+@demo demo/index.html
+-->
+
+<dom-module id="pennants-grade">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      #adminMenu {
+        margin-bottom: 10px;
+      }
+
+      paper-header-panel {
+        --paper-header-panel-body: {
+          display: block;
+          height: auto;
+          min-height: inherit;
+        }
+      }
+    </style>
+
+    <firebase-query
+      id="teamsQuery"
+      app-name="pennants-app"
+      path="{{teamsPath}}"
+      data="{{teams}}">
+    </firebase-query>
+
+    <app-indexeddb-mirror
+      key="teams"
+      data="{{teams}}"
+      persisted-data="{{teamsData}}">
+    </app-indexeddb-mirror>
+
+    <template is="dom-if" if="{{_isAdminLoggedIn()}}">
+      <paper-toolbar id="adminMenu">
+        <span class="title">Admin</span>
+        <pennants-admin page="grade" page-title="Grade"></pennants-admin>
+        <pennants-admin page="team" page-title="Team" icon="vaadin-icons:list"></pennants-admin>
+        <pennants-admin page="game" page-title="Game" icon="places:golf-course"></pennants-admin>
+        <pennants-admin page="player" page-title="Player" icon="social:people"></pennants-admin>
+      </paper-toolbar>
+    </template>
+
+    <template is="dom-repeat" items="{{grades}}" as="grade" filter="{{computeGradeFilter(seasonId)}}">
+      <paper-header-panel class="flex">
+        <paper-toolbar>
+          <span class="title">[[grade.name]]</span>
+          <pennants-admin
+            page="grade-team"
+            page-title="[[grade.name]] Team"
+            icon="vaadin-icons:list">
+          </pennants-admin>
+        </paper-toolbar>
+        <div>
+          <vaadin-grid id="[[gradeName]]">
+            <colgroup>
+              <col name="name">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Team</th>
+              </tr>
+            </thead>
+          </vaadin-grid>
+        </div>
+      </paper-header-panel>
+    </template>
+  </template>
+
+  <script src="pennants-grade.js"></script>
+</dom-module>
