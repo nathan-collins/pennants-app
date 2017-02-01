@@ -13,8 +13,8 @@
   </head>
   <body>
     <test-fixture id="pennants-season-fixture">
+      <pennants-season></pennants-season>
       <template>
-        <pennants-season></pennants-season>
       </template>
     </test-fixture>
 
@@ -26,22 +26,23 @@
           pennantsSeason.seasons = [
             {
               name: "2017 Season",
-              value: "2017"
             },
             {
               name: "2016 Season",
-              value: "2016"
             }
           ];
         }),
+
         test('instantiating the element works', function() {
           assert.equal(pennantsSeason.is, 'pennants-season');
         });
+
         test('current year should be selected', function() {
           var currentYear = new Date().getFullYear();
           var selectedValue = pennantsSeason.querySelector('iron-pages');
           expect(selectedValue).to.have.property('selected').and.equal(0);
         });
+
         test('2 tabs are displayed', function(done) {
           flush(function() {
             var tabs = pennantsSeason.querySelectorAll('paper-tab');
@@ -51,6 +52,7 @@
             done();
           });
         });
+
         test('when a tab is clocked the title changes', function(done) {
           flush(function() {
             var tabs = pennantsSeason.querySelectorAll('paper-tab');

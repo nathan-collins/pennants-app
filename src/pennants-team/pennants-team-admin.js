@@ -20,7 +20,7 @@ Polymer({
       return;
     }
 
-    this.fire('save-form-values', {name: name.value, path: 'team', season: season.trim()});
+    this.fire('save-form-values', {name: name.value, path: 'teams', season: season.trim()});
     this.$.teamName.value = '';
   },
 

@@ -4,7 +4,8 @@ Polymer({
 
   properties: {
     seasons: {
-      type: Object
+      type: Object,
+      statePath: 'seasons'
     },
 
     selectedValue: {
@@ -12,14 +13,9 @@ Polymer({
       value: 0
     },
 
-    gradesPath: {
-      type: String,
-      notify: true
-    },
-
     seasonId: {
       type: String,
-      notify: true
+      observer: 'seasonIdChanged'
     }
   },
 
@@ -28,18 +24,19 @@ Polymer({
   },
 
   seasonSelected: function(event) {
-    var season = this.$.seasonTabs.selectedItem;
-    localStorage.setItem('pennants:season', Object.keys(this.seasons)[this.selectedValue]);
-    this.set('seasonId', Object.keys(this.seasons)[this.selectedValue]);
-    this.set('gradesPath', 'grade');
+    if(!this.selectedValue) return;
+
+    var selectedTab = this.$.seasonTabs.selectedItem;
+    this.set('selectedValue', selectedTab.item);
+    this.set('seasonId', selectedTab.value);
+  },
+
+  seasonIdChanged: function() {
+    this.fire('season-changed', {seasonId: this.seasonId});
   },
 
   _isAdminLoggedIn: function() {
     // Check if an admin is looged in
     return true;
-  },
-
-  _toArray: function(items) {
-      return Object.keys(items).map(function (key) { return items[key]; });
   }
 });

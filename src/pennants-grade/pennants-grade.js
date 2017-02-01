@@ -2,45 +2,29 @@ Polymer({
 
   is: 'pennants-grade',
 
+  behaviors: [ ReduxBehavior ],
+
   properties: {
     grades: {
-      type: Object,
-      observer: 'handleGrades'
+      type: Array,
+      statePath: gradeSelector
+    }
+  },
+
+  actions: {
+    add: function(grade) {
+      return {
+        type: 'ADD_GRADE',
+        grade
+      }
     },
 
-    gradeId: {
-      type: String
-    },
-
-    teamsPath: {
-      type: String
-    }
-  },
-
-  handleGrades: function(event) {
-    for (var i = 0; i <= this.grades.length; i++) {
-      console.log(this.grades[i]);
-      this.set('gradeName', this.grades[i]['name']);
-      grid.items = function(params, callback) {
-        var data = grades.teams.filter(function(item) {
-          return item.hasOwnProperty(this.gradeId) != -1;
-        });
+    remove: function(grade) {
+      return {
+        type: 'REMOVE_GRADE',
+        grade
       }
     }
-  },
-
-  computeGradeFilter: function(seasonId) {
-    if(!seasonId) {
-      return null;
-    } else {
-      return function(grade) {
-        return (grade.seasons.hasOwnProperty(seasonId) != -1);
-      }
-    }
-  },
-
-  _toArray: function(items) {
-    if(items) return Object.keys(items).map(function (key) { return items[key]; });
   },
 
   _isAdminLoggedIn: function() {

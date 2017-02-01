@@ -3,6 +3,8 @@
 <link rel="import" href="../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 <link rel="import" href="../pennants-authentication/pennants-authentication.html">
 <link rel="import" href="../pennants-season/pennants-season.html">
+<link rel="import" href="../pennants-ladder/pennants-ladder.html">
+<link rel="import" href="../pennants-fixtures/pennants-fixtures.html">
 
 
 <dom-module id="pennants-app">
@@ -17,24 +19,51 @@
       database-url="https://sunshinecoastgolf.firebaseio.com"
       api-key="AIzaSyDM3TX6SIlBO6qLuDHKAJa92yYyXY0M6zs">
     </firebase-app>
-    
+
     <firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError">
     </firebase-auth>
 
     <firebase-query
       id="seasonQuery"
-      app-name="pennants-app"
-      path="/season"
+      path="/seasons"
       data="{{seasons}}">
     </firebase-query>
 
     <app-indexeddb-mirror
       key="seasons"
       data="{{seasons}}"
-      persisted-data="{{seasonData}}">
+      persisted-data="{{seasonsData}}">
     </app-indexeddb-mirror>
 
-    <pennants-season seasons="{{seasonData}}"></pennants-season>
+    <firebase-query
+      id="fixtureQuery"
+      path="{{fixturePath}}"
+      data="{{fixtures}}"
+      start-at="{{dateNow}}"
+      limit-to-last="1">
+    </firebase-query>
+
+    <app-indexeddb-mirror
+      key="fixtures"
+      data="{{fixtures}}"
+      persisted-data="{{fixturesData}}">
+    </app-indexeddb-mirror>
+
+    <firebase-query
+      id="ladderQuery"
+      path="{{ladderPath}}"
+      data="{{ladders}}">
+    </firebase-query>
+
+    <app-indexeddb-mirror
+      key="ladders"
+      data="{{ladders}}"
+      persisted-data="{{laddersData}}">
+    </app-indexeddb-mirror>
+
+    <pennants-season seasons="{{seasonsData}}"></pennants-season>
+    <pennants-ladder ladders="{{laddersData}}"></pennants-ladder>
+    <pennants-fixtures fixtures="{{fixturesData}}"></pennants-fixtures>
   </template>
 
   <script src="pennants-app.js"></script>

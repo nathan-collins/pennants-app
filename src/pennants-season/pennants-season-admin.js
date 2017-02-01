@@ -2,7 +2,7 @@ Polymer({
   is: 'pennants-season-admin',
 
   properties: {
-    
+
   },
 
   validate: function(value, request) {
@@ -13,12 +13,15 @@ Polymer({
   },
 
   submitSeasonForm: function() {
-    var name = this.$.seasonName;
+    var season = this.$.seasonName;
 
-    if(!this.validate(name.value)) {
+    if(!this.validate(season.value)) {
       return;
     }
 
-    this.fire('save-form-values', {name: name.value, path: 'season'});
+    this.fire('save-form-values', {
+      name: season.value,
+      path: 'seasons'
+    });
   }
 })

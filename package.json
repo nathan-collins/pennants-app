@@ -1,0 +1,26 @@
+{
+  "name": "pennants-app",
+  "version": "1.0.0",
+  "description": "Sunshine Coast golf pennants application",
+  "main": "index.html",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "redux": "^3.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "polymer test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathan-collins/pennants-app.git"
+  },
+  "author": "Nathan Collins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nathan-collins/pennants-app/issues"
+  },
+  "homepage": "https://github.com/nathan-collins/pennants-app#readme"
+}

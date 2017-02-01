@@ -1,0 +1,59 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid.html">
+
+<dom-module id="pennants-ladder">
+  <template>
+    <template is="dom-repeat" items="{{ladders}}" as="ladder">
+      <h2>[[ladder.$key]]</h2>
+      <vaadin-grid id="ladder">
+        <table>
+          <colgroup>
+            <col>
+            <col>
+            <col>
+            <col>
+            <col>
+            <col>
+            <col>
+            <col>
+            <col>
+            <col>
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>Rank</th>
+              <th>Played</th>
+              <th>Win</th>
+              <th>Loss</th>
+              <th>Draw</th>
+              <th>Bye</th>
+              <th>Points</th>
+              <th>Matches</th>
+              <th>Diff</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template is="dom-repeat" items="[[_toArray(ladder)]]" as="team">
+            <tr>
+              <td>[[team.name]]</td>
+              <template is="dom-repeat" items="[[_toArray(team.value)]]">
+                <td>[[team.value.rank]]</td>
+                <td>[[team.value.played]]</td>
+                <td>[[team.value.win]]</td>
+                <td>[[team.value.loss]]</td>
+                <td>[[team.value.draw]]</td>
+                <td>[[team.value.bye]]</td>
+                <td>[[team.value.points]]</td>
+                <td>[[team.value.matches]]</td>
+                <td>[[team.value.diff]]</td>
+              </template>
+            </tr>
+            </template>
+          </tbody>
+        </table>
+      </vaadin-grid>
+    </template>
+  </template>
+  <script src="pennants-ladder.js"></script>
+</dom-module>

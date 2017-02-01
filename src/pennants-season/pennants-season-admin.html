@@ -9,7 +9,14 @@
     </style>
     <form is="iron-form" id="seasonForm">
       <div>
-        <paper-input name="season_name" id="seasonName" label="Season name" value="{{name}}" required auto-validate></paper-input>
+        <paper-input
+          name="season"
+          id="seasonName"
+          label="Season name"
+          value="{{season}}"
+          required
+          auto-validate>
+        </paper-input>
       </div>
       <div class="buttons">
         <paper-button dialog-dismiss>Cancel</paper-button>

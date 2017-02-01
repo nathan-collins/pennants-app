@@ -10,6 +10,10 @@ Polymer({
       type: String
     },
 
+    data: {
+      type: Object
+    },
+
     computePath: {
       type: String
     },
@@ -43,16 +47,23 @@ Polymer({
 
     delete event.detail.path;
 
-    if(event.detail.key) {
-      key = event.detail.key
-      delete event.detail.key;
-    } else {
-      key = firebase.database().ref(path).push().key;
+    switch(path) {
+      case 'seasons':
+        if(event.detail.key) {
+          key = event.detail.key
+          delete event.detail.key;
+        } else {
+          key = firebase.database().ref(path).push().key;
+        }
+
+        var data = event.detail;
+
+        firebase.database().ref(path+'/').child(key).set(data);
+        break;
+      case 'grades':
+
+        break;
     }
-
-    var data = event.detail;
-
-    firebase.database().ref(path).child(key).set(data);
 
     this.$.dialog.close();
   },

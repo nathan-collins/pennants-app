@@ -14,13 +14,12 @@ Polymer({
 
   submitGradeForm: function(event) {
     var name = this.$.gradeName;
-    var season = localStorage.getItem('pennants:season');
 
     if(!this.validate(name.value)) {
       return;
     }
 
-    this.fire('save-form-values', {name: name.value, path: 'grade', season: season.trim()});
+    this.fire('save-form-values', {name: name.value, path: 'grades'});
     this.$.gradeName.value = '';
   }
 })

@@ -1,0 +1,29 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+
+<dom-module id="pennants-fixtures">
+  <template>
+    <template is="dom-repeat" items="{{fixtures}}" as="fixture">
+      <h2>[[fixture.$key]]</h2>
+      <template is="dom-repeat" items="{{_toArray(fixture)}}" as="grade">
+        <h1>[[grade.name]] - Next Match</h1>
+        <paper-card image="">
+          <div class="card-content">
+            <div class="card-host">Host Club: [[grade.value.host]]</div>
+          </div>
+          <div class="card-actions">
+            <template is="dom-repeat" items="[[_toArray(grade.value.games)]]" as="game">
+              <div class="horizontal justified">
+                [[game.name]]
+                <template is="dom-repeat" items="[[_toArray(game.value.teams)]]" as="team">
+                  [[team.name]]
+                </template>
+              </div>
+            </template>
+          </div>
+        </paper-card>
+      </template>
+    </template>
+  </template>
+  <script src="pennants-fixtures.js"></script>
+</dom-module>
